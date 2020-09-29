@@ -51,7 +51,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
-    'notes.apps.NotesEngineConfig'
+    'rest_framework',
+
+    'notes.apps.NotesEngineConfig',
 ]
 
 MIDDLEWARE = [
@@ -97,6 +99,11 @@ DATABASES = {
         'HOST': get_secret('HOST'),
         'PORT': get_secret('PORT')
     }
+}
+
+REST_FRAMEWORK = {
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
+    'PAGE_SIZE': 10
 }
 
 
