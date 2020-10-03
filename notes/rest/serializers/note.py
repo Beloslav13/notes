@@ -22,12 +22,15 @@ class NoteSerializer(serializers.ModelSerializer):
     def _update_entity(self, instance, validated_data):
         is_done = validated_data.pop('is_done', None)
         if is_done is not None:
+            validated_data.pop('solved_at', None)
+            # Если в инстанции заметка не закрыта и новые данные не равны с данными инстанции, то устанавливаем
+            # заметку закрытой и ставим дату закрытия.
             if not instance.is_done and is_done != instance.is_done:
-                validated_data.pop('solved_at', None)
                 instance.solved_at = timezone.now()
                 instance.is_done = is_done
+            # Если заметка закрыта и есть дата закрытия, но статус закрыто отличается от статуса инстанции,
+            # то устанавливаем заметку как открытую и убираем дату закрытия.
             elif instance.is_done and instance.solved_at and is_done != instance.is_done:
-                validated_data.pop('solved_at', None)
                 instance.solved_at = None
                 instance.is_done = is_done
             instance.save()
