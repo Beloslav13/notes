@@ -12,6 +12,9 @@ class NoteSerializer(serializers.ModelSerializer):
         fields = ('id', 'name', 'owner', 'priority', 'readers', 'count_readers', 'url', 'is_done', 'created_at', 'solved_at')
 
     def get_count_readers(self, instance):
+        """
+        Получить количество разрешенных читаталей заметки.
+        """
         return instance.readers.all().count()
 
     def validate(self, data):
