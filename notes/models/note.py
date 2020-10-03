@@ -17,6 +17,7 @@ class Note(models.Model):
     readers = models.ManyToManyField(User, related_name='read_notes', blank=True)
     is_done = models.BooleanField(default=False)
     created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
     solved_at = models.DateTimeField(auto_now=False, blank=True, null=True, db_index=True)
 
     def __str__(self):
