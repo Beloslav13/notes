@@ -20,5 +20,9 @@ class Note(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
     solved_at = models.DateTimeField(auto_now=False, blank=True, null=True, db_index=True)
 
+    class Meta:
+        verbose_name = 'Заметка'
+        verbose_name_plural = 'Заметки'
+
     def __str__(self):
         return f'Name: {self.name}, owner: {self.owner}'
