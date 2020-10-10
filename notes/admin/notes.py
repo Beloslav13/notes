@@ -19,9 +19,10 @@ class NotesAdmin(admin.ModelAdmin):
                         continue
                     else:
                         update_fields.append(k)
+                    # Проставляем дату закрытия заметки
                     if k == 'is_done' and form.cleaned_data[k]:
                         obj.solved_at = timezone.now()
-                    else:
+                    elif k == 'is_done' and form.initial.get(k, None) is not None and not form.cleaned_data[k]:
                         obj.solved_at = None
                     obj.save()
             obj.save(update_fields=update_fields)
