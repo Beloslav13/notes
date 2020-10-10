@@ -24,10 +24,13 @@ class NotesAdmin(admin.ModelAdmin):
                     else:
                         obj.solved_at = None
                     obj.save()
-            print(update_fields)
             obj.save(update_fields=update_fields)
         else:
             super(NotesAdmin, self).save_model(request, obj, form, change)
+            # При создании заметки добавляем в читатели владельца заметки если это поле не было заполнено.
+            if not obj.readers.all().exists():
+                obj.readers.add(obj.owner)
+                form.cleaned_data['readers'] = obj.readers.all()
 
 
 admin.site.register(Note, NotesAdmin)
