@@ -14,4 +14,7 @@ class NoteViewSet(viewsets.ModelViewSet):
     permission_classes = [IsAuthenticatedOrReadOnly]
 
     def perform_create(self, serializer):
+        """
+        Добавляем в readers user`а если поле не было заполено при создании.
+        """
         serializer.save(readers=[self.request.user])
