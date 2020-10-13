@@ -6,11 +6,18 @@ from notes.models import Note
 
 class NoteSerializer(serializers.ModelSerializer):
     count_readers = serializers.SerializerMethodField()
+    owner = serializers.SerializerMethodField()
+    # todo: вывести читатей в читаемом виде вместо id
+    # readers = serializers.SerializerMethodField()
 
     class Meta:
         model = Note
         fields = ('id', 'name', 'owner', 'priority', 'readers', 'count_readers', 'url', 'is_done', 'created_at',
                   'updated_at', 'solved_at')
+
+    def get_owner(self, instance):
+        # Вывести в апи username вместо id
+        return instance.owner.username
 
     def get_count_readers(self, instance):
         """
