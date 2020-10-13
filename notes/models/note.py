@@ -1,5 +1,6 @@
 from django.contrib.auth.models import User
 from django.db import models
+from django.urls import reverse
 
 
 class Note(models.Model):
@@ -24,5 +25,8 @@ class Note(models.Model):
         verbose_name = 'Заметка'
         verbose_name_plural = 'Заметки'
 
+    def get_detail_url(self):
+        return reverse('note_detail', args=[self.pk])
+
     def __str__(self):
-        return f'Name: {self.name}, owner: {self.owner}'
+        return f'id note: {self.id}, owner: {self.owner}'
