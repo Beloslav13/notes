@@ -1,23 +1,21 @@
+from django.contrib.auth.models import User
 from django.utils import timezone
 from rest_framework import serializers
 
-from notes.models import Note
+from notes.models import Note, Person
+from notes.rest.serializers.person import PersonSerializer, UserSerializer
 
 
 class NoteSerializer(serializers.ModelSerializer):
     count_readers = serializers.SerializerMethodField()
-    owner = serializers.SerializerMethodField()
-    # todo: вывести читатей в читаемом виде вместо id
-    # readers = serializers.SerializerMethodField()
+    owner = UserSerializer(read_only=True, required=False)
+    readers = UserSerializer(many=True, read_only=True, required=False)
 
     class Meta:
         model = Note
-        fields = ('id', 'name', 'owner', 'priority', 'readers', 'count_readers', 'url', 'is_done', 'created_at',
-                  'updated_at', 'solved_at')
-
-    def get_owner(self, instance):
-        # Вывести в апи username вместо id
-        return instance.owner.username
+        depth = 1
+        fields = ('id', 'url', 'name', 'owner', 'priority', 'readers', 'count_readers',
+                  'url', 'is_done', 'created_at', 'updated_at', 'solved_at')
 
     def get_count_readers(self, instance):
         """
