@@ -12,6 +12,7 @@ class PersonInlineAdmin(admin.StackedInline):
 
 
 class PersonAdmin(UserAdmin):
+    # todo: нужно доработать админку, перенести модель персоны выше либо в другое место.
     inlines = (PersonInlineAdmin, )
     date_hierarchy = 'date_joined'
     empty_value_display = 'Не определено'
