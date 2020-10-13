@@ -1,7 +1,7 @@
 from django.contrib.auth.models import User
 from rest_framework import serializers
 
-from notes.models import Note
+from notes.models.note import Note
 from notes.models.person import Person
 
 
