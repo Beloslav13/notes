@@ -2,7 +2,8 @@ from django.contrib.auth.models import User
 from django.utils import timezone
 from rest_framework import serializers
 
-from notes.models import Note, Person
+from notes.models.note import Note
+from notes.models.person import Person
 from notes.rest.serializers.person import PersonSerializer, UserSerializer
 
 
