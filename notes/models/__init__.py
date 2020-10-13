@@ -1,2 +1,3 @@
 from notes.models.note import Note
-from notes.signals.handlers import note
+from .person import Person
+from notes.signals.handlers import note, person
