@@ -23,4 +23,4 @@ class Person(models.Model):
     )
 
     def __str__(self):
-        return f'{self.person.username}'
+        return f'{self.person.username} id:{self.id}'

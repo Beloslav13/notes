@@ -64,3 +64,15 @@ class Note(models.Model):
 
     def __str__(self):
         return f'id note: {self.id}, owner: {self.owner}'
+
+    @property
+    def get_owner_username(self):
+        return self.owner.username
+
+    @property
+    def get_owner_first_name(self):
+        return self.owner.first_name
+
+    @property
+    def get_owner_last_name(self):
+        return self.owner.last_name
