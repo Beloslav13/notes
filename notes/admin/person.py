@@ -17,7 +17,7 @@ class PersonAdmin(UserAdmin):
     date_hierarchy = 'date_joined'
     empty_value_display = 'Не определено'
     list_display = ('username', 'email', 'last_name', 'first_name', 'birthday', 'date_joined', 'last_login', 'is_staff')
-    readonly_fields = ('birthday',)
+    readonly_fields = ('birthday', 'last_login', 'date_joined')
     ordering = ('id',)
 
     def birthday(self, user):
