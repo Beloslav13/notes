@@ -66,13 +66,17 @@ class Note(models.Model):
         return f'id note: {self.id}, owner: {self.owner}'
 
     @property
-    def get_owner_username(self):
+    def owner_username(self):
         return self.owner.username
 
     @property
-    def get_owner_first_name(self):
+    def owner_first_name(self):
         return self.owner.first_name
 
     @property
-    def get_owner_last_name(self):
+    def owner_last_name(self):
         return self.owner.last_name
+
+    @property
+    def owner_person(self):
+        return self.owner.person
