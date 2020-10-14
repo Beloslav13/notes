@@ -1,10 +1,8 @@
-from django.contrib.auth.models import User
 from django.utils import timezone
 from rest_framework import serializers
 
 from notes.models.note import Note
-from notes.models.person import Person
-from notes.rest.serializers.person import PersonSerializer, UserSerializer
+from notes.rest.serializers.person import UserSerializer
 
 
 class NoteSerializer(serializers.ModelSerializer):
@@ -14,7 +12,7 @@ class NoteSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Note
-        depth = 1
+        # depth = 1
         fields = ('id', 'url', 'name', 'owner', 'priority', 'readers', 'count_readers',
                   'url', 'is_done', 'created_at', 'updated_at', 'solved_at')
 
