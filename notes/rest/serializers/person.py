@@ -22,14 +22,14 @@ class UserSerializer(serializers.ModelSerializer):
     phone = serializers.CharField(source='person.phone', allow_blank=True, allow_null=True)
     birthday = serializers.CharField(source='person.birthday')
     # todo: это поле возможно не нужно
-    person_id = serializers.IntegerField(source='person.id', read_only=True)
+    # person_id = serializers.IntegerField(source='person.id', read_only=True)
     person = serializers.PrimaryKeyRelatedField(read_only=True)
 
     class Meta:
         model = User
         # depth = 1
         fields = ('id', 'url', 'person', 'first_name', 'last_name', 'username', 'email',
-                  'person_id', 'phone', 'birthday', 'my_notes', 'read_notes')
+                  'phone', 'birthday', 'my_notes', 'read_notes')
 
     def validate(self, data):
         attr_errors = {}
@@ -45,9 +45,9 @@ class UserSerializer(serializers.ModelSerializer):
         validated_data.pop('read_notes')
         user = User.objects.create(**validated_data)
         try:
-            Person.objects.create(person=user, **persons_data)
+            Person.objects.create(user=user, **persons_data)
         except TypeError as exc:
-            person = Person.objects.create(person=user)
+            person = Person.objects.create(user=user)
             logging.error(f'Произошла ошибка при создании персоны в сериалайзере: {exc}\n'
                           f'user id {user.id}, person id {person.id}')
         return user
