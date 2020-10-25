@@ -6,7 +6,8 @@ class Person(models.Model):
 
     person = models.OneToOneField(
         User,
-        on_delete=models.CASCADE
+        on_delete=models.CASCADE,
+        related_name='user'
     )
 
     phone = models.CharField(
