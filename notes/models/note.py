@@ -4,6 +4,8 @@ from django.urls import reverse
 
 
 class Note(models.Model):
+    """Базовая модель заметки."""
+
     PRIORITY_CHOICE = (
         (1, 'Низкий'),
         (2, 'Средний'),
@@ -67,16 +69,20 @@ class Note(models.Model):
 
     @property
     def owner_username(self):
+        """Получить username владельца заметки."""
         return self.owner.username
 
     @property
     def owner_first_name(self):
+        """Получить first_name владельца заметки."""
         return self.owner.first_name
 
     @property
     def owner_last_name(self):
+        """Получить last_name владельца заметки."""
         return self.owner.last_name
 
     @property
     def owner_person(self):
+        """Получить персону владельца заметки."""
         return self.owner.person
