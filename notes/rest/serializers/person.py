@@ -18,6 +18,7 @@ class PersonSerializer(serializers.ModelSerializer):
 class UserSerializer(serializers.ModelSerializer):
     my_notes = serializers.PrimaryKeyRelatedField(many=True, queryset=Note.objects.all())
     read_notes = serializers.PrimaryKeyRelatedField(many=True, queryset=Note.objects.all())
+    # todo: count my_notes
     phone = serializers.CharField(source='person.phone', allow_blank=True, allow_null=True)
     birthday = serializers.CharField(source='person.birthday')
     person = serializers.PrimaryKeyRelatedField(read_only=True)
