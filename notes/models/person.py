@@ -3,6 +3,7 @@ from django.db import models
 
 
 class Person(models.Model):
+    """Расширенная модель User с дополнительными полями."""
 
     user = models.OneToOneField(
         User,

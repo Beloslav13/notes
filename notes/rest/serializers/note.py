@@ -12,7 +12,6 @@ class NoteSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Note
-        # depth = 1
         fields = ('id', 'url', 'name', 'owner', 'priority', 'readers', 'count_readers',
                   'url', 'is_done', 'created_at', 'updated_at', 'solved_at')
 
