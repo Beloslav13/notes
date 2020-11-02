@@ -7,8 +7,17 @@ from notes.rest.serializers.person import UserSerializer
 
 class NoteSerializer(serializers.ModelSerializer):
     count_readers = serializers.SerializerMethodField()
-    owner = UserSerializer(read_only=True, required=False)
-    readers = UserSerializer(many=True, read_only=True, required=False)
+
+    owner = UserSerializer(
+        read_only=True,
+        required=False
+    )
+
+    readers = UserSerializer(
+        many=True,
+        read_only=True,
+        required=False
+    )
 
     class Meta:
         model = Note

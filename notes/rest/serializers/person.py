@@ -1,4 +1,5 @@
 from django.contrib.auth.models import User
+from django.db.models import Count
 from rest_framework import serializers
 
 from notes.models.note import Note
@@ -16,17 +17,50 @@ class PersonSerializer(serializers.ModelSerializer):
 
 
 class UserSerializer(serializers.ModelSerializer):
-    my_notes = serializers.PrimaryKeyRelatedField(many=True, queryset=Note.objects.all())
-    read_notes = serializers.PrimaryKeyRelatedField(many=True, queryset=Note.objects.all())
-    # todo: count my_notes
-    phone = serializers.CharField(source='person.phone', allow_blank=True, allow_null=True)
-    birthday = serializers.CharField(source='person.birthday')
-    person = serializers.PrimaryKeyRelatedField(read_only=True)
+    # my_notes = serializers.PrimaryKeyRelatedField(many=True, read_only=True)
+    # read_notes = serializers.PrimaryKeyRelatedField(
+    #     many=True,
+    #     read_only=True
+    # )
+
+    my_notes = serializers.HyperlinkedRelatedField(
+        many=True,
+        read_only=True,
+        view_name='note-detail'
+    )
+
+    read_notes = serializers.HyperlinkedRelatedField(
+        many=True,
+        read_only=True,
+        view_name='note-detail'
+    )
+
+    phone = serializers.CharField(
+        source='person.phone',
+        allow_blank=True,
+        allow_null=True
+    )
+
+    birthday = serializers.CharField(
+        source='person.birthday'
+    )
+
+    person = serializers.PrimaryKeyRelatedField(
+        read_only=True
+    )
+
+    count_read_notes = serializers.IntegerField(
+        read_only=True
+    )
+
+    count_notes = serializers.IntegerField(
+        read_only=True
+    )
 
     class Meta:
         model = User
         fields = ('id', 'url', 'person', 'first_name', 'last_name', 'username', 'email',
-                  'phone', 'birthday', 'my_notes', 'read_notes')
+                  'phone', 'birthday', 'my_notes', 'read_notes', 'count_notes', 'count_read_notes')
 
     def validate(self, data):
         attr_errors = {}
