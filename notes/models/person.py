@@ -67,6 +67,14 @@ class Person(models.Model):
         self.user.last_name = value
 
     @property
+    def full_name(self):
+        """
+        Внимание! Метод вернёт либо полное имя, либо email если он есть либо в крайнем случае username!
+        """
+        full_name = f'{self.user.first_name} {self.user.last_name}'
+        return full_name if len(full_name) > 1 else self.user.email or self.user.username
+
+    @property
     def email(self):
         return self.user.email
 

@@ -1,16 +1,25 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
 from django.contrib.auth.models import User
+from django.utils.translation import ugettext_lazy as _
 
 from notes.models import Person
 
 
 class PersonCustomAdmin(admin.ModelAdmin):
     fields = ('user', 'phone', 'birthday', 'last_activity')
-    list_display = ('user', 'phone', 'birthday', 'last_activity')
-    list_filter = ('birthday',)
+    list_display = ('name', 'email', 'phone', 'birthday', 'last_activity')
+    list_display_links = ('name', 'email',)
+    list_filter = ('birthday', 'last_activity')
+    search_fields = ('id', 'user__first_name', 'user__last_name', 'user__email')
+    empty_value_display = 'Не определено'
     readonly_fields = ('last_activity', )
     ordering = ('id',)
+
+    def name(self, user):
+        full_name = f'{user.first_name} {user.last_name}'
+        return full_name if len(full_name) > 1 else user.email or user.username
+    name.short_description = _('Name person')
 
 
 class PersonInlineAdmin(admin.StackedInline):
