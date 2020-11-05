@@ -8,8 +8,8 @@ from notes.models import Person
 
 class PersonCustomAdmin(admin.ModelAdmin):
     fields = ('user', 'phone', 'birthday', 'last_activity')
-    list_display = ('name', 'email', 'phone', 'birthday', 'last_activity')
-    list_display_links = ('name', 'email',)
+    list_display = ('id', 'name', 'email', 'phone', 'birthday', 'last_activity')
+    list_display_links = ('id', 'name', 'email',)
     list_filter = ('birthday', 'last_activity')
     search_fields = ('id', 'user__first_name', 'user__last_name', 'user__email')
     empty_value_display = 'Не определено'
@@ -32,7 +32,7 @@ class PersonAdmin(UserAdmin):
     inlines = (PersonInlineAdmin, )
     date_hierarchy = 'date_joined'
     empty_value_display = 'Не определено'
-    list_display = ('username', 'email', 'last_name', 'first_name', 'birthday', 'date_joined', 'last_login', 'is_staff')
+    list_display = ('id', 'username', 'email', 'last_name', 'first_name', 'birthday', 'date_joined', 'last_login', 'is_staff')
     readonly_fields = ('birthday', 'last_login', 'date_joined')
     ordering = ('id',)
 
