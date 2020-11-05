@@ -54,6 +54,8 @@ INSTALLED_APPS = [
     'rest_framework',
 
     'notes.apps.NotesEngineConfig',
+
+    'fsm_admin',
 ]
 
 MIDDLEWARE = [
