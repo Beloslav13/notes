@@ -7,14 +7,9 @@ from django_fsm.signals import post_transition
 from notes.models.note import Note
 
 
-# Test
-@receiver(post_save, sender=Note, dispatch_uid='invalidate_note')
-def invalidate_note(sender, instance, **kwargs):
-    pass
-
-
 @receiver(post_transition, sender=Note, dispatch_uid='invalidate_note_transition')
 def invalidate_note_transition(sender, instance, name, source, target, **kwargs):
+    """Сигнал проставляющий последнюю активность персоне."""
     if name:
         instance.owner.person.last_activity = timezone.now()
         instance.owner.person.save()
