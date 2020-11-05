@@ -8,7 +8,8 @@ class NotesAdmin(admin.ModelAdmin):
     save_on_top = True
     list_display = ('id', 'owner', 'name', 'created_at', 'solved_at')
     list_display_links = ('id', 'owner', 'name')
-    readonly_fields = ('created_at', 'updated_at', 'solved_at')
+    readonly_fields = ('state_name', 'created_at', 'updated_at', 'solved_at')
+    exclude = ('state',)
 
     def save_model(self, request, obj, form, change):
         if change:
@@ -32,6 +33,13 @@ class NotesAdmin(admin.ModelAdmin):
             if not obj.readers.all().exists():
                 obj.readers.add(obj.owner)
                 form.cleaned_data['readers'] = obj.readers.all()
+
+    def get_fieldsets(self, request, obj=None):
+        fieldsets = super().get_fieldsets(request, obj=obj)
+        if obj:
+            state = fieldsets[0][1]['fields'].pop(5)
+            fieldsets[0][1]['fields'].insert(1, state)
+        return fieldsets
 
 
 admin.site.register(Note, NotesAdmin)
