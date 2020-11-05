@@ -1,17 +1,32 @@
 from django.contrib.auth.models import User
 from django.db import models
 from django.urls import reverse
+from django.utils.translation import ugettext_lazy as _
+
+from django_fsm import FSMField, transition
 
 
 class Note(models.Model):
     """Базовая модель заметки."""
 
     PRIORITY_CHOICE = (
-        (1, 'Низкий'),
-        (2, 'Средний'),
-        (3, 'Выше среднего'),
-        (4, 'Высокий'),
-        (5, 'Наивысший')
+        (1, _('Low')),
+        (2, _('Middle')),
+        (3, _('Above the average')),
+        (4, _('High')),
+        (5, _('Highest'))
+    )
+
+    TRANSITIONS = {
+        'draft': _('Draft'),
+        'published': _('Published'),
+        'done': _('Done')
+    }
+
+    state = FSMField(
+        default='draft',
+        protected=True,
+        verbose_name=_('State')
     )
 
     name = models.CharField(
@@ -58,8 +73,8 @@ class Note(models.Model):
     )
 
     class Meta:
-        verbose_name = 'Заметка'
-        verbose_name_plural = 'Заметки'
+        verbose_name = _('Note')
+        verbose_name_plural = _('Notes')
 
     def get_detail_url(self):
         return reverse('note_detail', args=[self.pk])
@@ -86,3 +101,8 @@ class Note(models.Model):
     def owner_person(self):
         """Получить персону владельца заметки."""
         return self.owner.person
+
+    def state_name(self):
+        """Возвращает состояние заметки."""
+        return self.TRANSITIONS.get(self.state)
+    state_name.short_description = _('State')
