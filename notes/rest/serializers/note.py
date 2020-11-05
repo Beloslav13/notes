@@ -21,7 +21,7 @@ class NoteSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Note
-        fields = ('id', 'url', 'name', 'owner', 'priority', 'readers', 'count_readers',
+        fields = ('id', 'url', 'name', 'state', 'owner', 'priority', 'readers', 'count_readers',
                   'url', 'is_done', 'created_at', 'updated_at', 'solved_at')
 
     def get_count_readers(self, instance):
