@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-11-05 17:01+0300\n"
-"PO-Revision-Date: 2020-11-05 17:03+0300\n"
+"POT-Creation-Date: 2020-11-05 17:36+0300\n"
+"PO-Revision-Date: 2020-11-05 17:37+0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: ru\n"
@@ -124,26 +124,30 @@ msgstr "Выполнено"
 msgid "Done to in work"
 msgstr "В работе"
 
-#: models/person.py:14
+#: models/person.py:15
 msgid "User"
 msgstr "Пользователь"
 
-#: models/person.py:22
+#: models/person.py:23
 msgid "Phone"
 msgstr "Номер телефона"
 
-#: models/person.py:29
+#: models/person.py:30
 msgid "Birthday"
 msgstr "Дата рождения"
 
 #: models/person.py:35
+msgid "Last activity"
+msgstr "Последняя активность"
+
+#: models/person.py:39
 msgid "Person"
 msgstr "Персона"
 
-#: models/person.py:36
+#: models/person.py:40
 msgid "Persons"
 msgstr "Персоны"
 
-#: rest/serializers/person.py:70
+#: rest/serializers/person.py:74
 msgid "This field has not been filled in"
-msgstr "Это поле не было заполнено."
+msgstr "Это поле не было заполнено"
