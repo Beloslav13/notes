@@ -36,9 +36,12 @@ class NotesAdmin(FSMCustomTransitionMixin, admin.ModelAdmin):
         else:
             super(NotesAdmin, self).save_model(request, obj, form, change)
             # При создании заметки добавляем в читатели владельца заметки если это поле не было заполнено.
+            # И меняем состоянии заметки на опубликовано.
             if not obj.readers.all().exists():
                 obj.readers.add(obj.owner)
                 form.cleaned_data['readers'] = obj.readers.all()
+            obj.do_transition('draft_to_published')
+            obj.save()
 
     def get_fieldsets(self, request, obj=None):
         fieldsets = super().get_fieldsets(request, obj=obj)

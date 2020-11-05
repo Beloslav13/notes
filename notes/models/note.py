@@ -117,6 +117,10 @@ class Note(models.Model):
         return self.TRANSITIONS.get(self.state)
     state_name.short_description = _('State')
 
+    def do_transition(self, transition_name):
+        trans_name = getattr(self, transition_name)
+        return trans_name()
+
     @transition(field=state, source='draft', target='published',
                 custom=dict(admin=True, button_name=_('Draft to published')))
     def draft_to_published(self):

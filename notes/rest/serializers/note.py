@@ -21,8 +21,10 @@ class NoteSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Note
-        fields = ('id', 'url', 'name', 'state', 'owner', 'priority', 'readers', 'count_readers',
-                  'url', 'is_done', 'created_at', 'updated_at', 'solved_at')
+        fields = (
+            'id', 'url', 'name', 'state', 'state_name', 'owner', 'priority', 'readers', 'count_readers', 'url',
+            'is_done', 'created_at', 'updated_at', 'solved_at'
+        )
 
     def get_count_readers(self, instance):
         """
@@ -54,4 +56,3 @@ class NoteSerializer(serializers.ModelSerializer):
     def update(self, instance, validated_data):
         self._update_entity(self, instance, validated_data)
         return super(self.__class__, self).update(instance, validated_data)
-
