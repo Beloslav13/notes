@@ -1,13 +1,11 @@
-# from django.contrib.auth.models import User
-# from django.db.models.signals import post_save
-# from django.dispatch import receiver
-#
-#
-# from notes.models.person import Person
-#
-#
-# @receiver(post_save, sender=User, dispatch_uid='invalidate_note')
-# def create_user_profile(sender, instance, created, **kwargs):
-#     if created:
-#         Person.objects.create(person=instance)
-#     instance.person.save()
+from django.db.models.signals import post_delete
+from django.dispatch import receiver
+
+from notes.models.person import Person
+
+
+@receiver(post_delete, sender=Person, dispatch_uid='invalidate_person_and_delete')
+def invalidate_person_and_delete(sender, instance, **kwargs):
+    user = instance.user
+    if user and not (user.is_staff or user.is_superuser):
+        user.delete()
