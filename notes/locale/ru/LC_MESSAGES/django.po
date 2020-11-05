@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-11-05 14:37+0300\n"
-"PO-Revision-Date: 2020-11-05 14:38+0300\n"
+"POT-Creation-Date: 2020-11-05 15:57+0300\n"
+"PO-Revision-Date: 2020-11-05 15:58+0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: ru\n"
@@ -20,46 +20,74 @@ msgstr ""
 "%100>=11 && n%100<=14)? 2 : 3);\n"
 "X-Generator: Poedit 2.4.1\n"
 
-#: apps.py:7 models/note.py:77
+#: apps.py:7 models/note.py:79
 msgid "Notes"
 msgstr "Заметки"
 
-#: models/note.py:13
+#: models/note.py:14
 msgid "Low"
 msgstr "Низкий"
 
-#: models/note.py:14
+#: models/note.py:15
 msgid "Middle"
 msgstr "Средний"
 
-#: models/note.py:15
+#: models/note.py:16
 msgid "Above the average"
 msgstr "Выше среднего"
 
-#: models/note.py:16
+#: models/note.py:17
 msgid "High"
 msgstr "Высокий"
 
-#: models/note.py:17
+#: models/note.py:18
 msgid "Highest"
 msgstr "Наивысший"
 
-#: models/note.py:21
+#: models/note.py:22
 msgid "Draft"
 msgstr "Черновик"
 
-#: models/note.py:22
+#: models/note.py:23
 msgid "Published"
 msgstr "Опубликовано"
 
-#: models/note.py:23
+#: models/note.py:24
+msgid "In work"
+msgstr "В работе"
+
+#: models/note.py:25
 msgid "Done"
 msgstr "Выполнено"
 
-#: models/note.py:29 models/note.py:108
+#: models/note.py:31 models/note.py:110
 msgid "State"
 msgstr "Состояние"
 
-#: models/note.py:76
+#: models/note.py:78
 msgid "Note"
 msgstr "Заметка"
+
+#: models/note.py:113
+msgid "Draft to published"
+msgstr "Опубликовано"
+
+#: models/note.py:121
+msgid "Published to draft"
+msgstr "Черновик"
+
+#: models/note.py:129
+msgid "Published to in work"
+msgstr "В работе"
+
+#: models/note.py:137
+msgid "In work to Published"
+msgstr "Опубликовано"
+
+#: models/note.py:145
+msgid "In work to done"
+msgstr "Выполнено"
+
+#: models/note.py:155
+msgid "Done to in work"
+msgstr "В работе"

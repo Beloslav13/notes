@@ -1,15 +1,17 @@
 from django.contrib import admin
 from django.utils import timezone
 
+from notes.admin.mixins import FSMCustomTransitionMixin
 from notes.models.note import Note
 
 
-class NotesAdmin(admin.ModelAdmin):
+class NotesAdmin(FSMCustomTransitionMixin, admin.ModelAdmin):
     save_on_top = True
     list_display = ('id', 'owner', 'name', 'created_at', 'solved_at')
     list_display_links = ('id', 'owner', 'name')
     readonly_fields = ('state_name', 'created_at', 'updated_at', 'solved_at')
     exclude = ('state',)
+    fsm_field = ['state', ]
 
     def save_model(self, request, obj, form, change):
         if change:
@@ -27,6 +29,9 @@ class NotesAdmin(admin.ModelAdmin):
                         obj.solved_at = None
                     obj.save()
             obj.save(update_fields=update_fields)
+            fsm_field, transition = self._get_requested_transition(request)
+            if transition:
+                super(NotesAdmin, self).save_model(request, obj, form, change)
         else:
             super(NotesAdmin, self).save_model(request, obj, form, change)
             # При создании заметки добавляем в читатели владельца заметки если это поле не было заполнено.
