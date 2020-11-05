@@ -7,8 +7,9 @@ from notes.models.note import Note
 
 class NotesAdmin(FSMCustomTransitionMixin, admin.ModelAdmin):
     save_on_top = True
-    list_display = ('id', 'owner', 'name', 'created_at', 'solved_at')
+    list_display = ('id', 'owner', 'state_name', 'name', 'created_at', 'solved_at', 'is_done')
     list_display_links = ('id', 'owner', 'name')
+    list_filter = ('is_done', 'created_at', 'solved_at')
     readonly_fields = ('state_name', 'created_at', 'updated_at', 'solved_at')
     exclude = ('state',)
     fsm_field = ['state', ]

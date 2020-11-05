@@ -6,9 +6,10 @@ from notes.models import Person
 
 
 class PersonCustomAdmin(admin.ModelAdmin):
-    fields = ('user', 'phone', 'birthday')
-    list_display = ('user', 'phone', 'birthday')
+    fields = ('user', 'phone', 'birthday', 'last_activity')
+    list_display = ('user', 'phone', 'birthday', 'last_activity')
     list_filter = ('birthday',)
+    readonly_fields = ('last_activity', )
     ordering = ('id',)
 
 

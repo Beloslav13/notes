@@ -1,5 +1,6 @@
 from django.contrib.auth.models import User
 from django.db import models
+from django.utils import timezone
 from django.utils.translation import ugettext_lazy as _
 
 
@@ -29,7 +30,10 @@ class Person(models.Model):
         verbose_name=_('Birthday')
     )
 
-    # todo: last_activity
+    last_activity = models.DateTimeField(
+        default=timezone.now,
+        verbose_name=_('Last activity')
+    )
 
     class Meta:
         verbose_name = _('Person')
@@ -37,9 +41,6 @@ class Person(models.Model):
 
     def __str__(self):
         return f'{self.user.username} id:{self.id}'
-
-    def phone_name(self):
-        return self.phone
 
     @property
     def username(self):

@@ -47,6 +47,10 @@ class UserSerializer(serializers.ModelSerializer):
         source='person.birthday'
     )
 
+    last_activity = serializers.DateTimeField(
+        source='person.last_activity'
+    )
+
     person = serializers.PrimaryKeyRelatedField(
         read_only=True
     )
@@ -61,7 +65,7 @@ class UserSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        fields = ('id', 'url', 'person', 'first_name', 'last_name', 'username', 'email',
+        fields = ('id', 'url', 'person', 'last_activity', 'first_name', 'last_name', 'username', 'email',
                   'phone', 'birthday', 'my_notes', 'read_notes', 'count_notes', 'count_read_notes')
 
     def validate(self, data):
