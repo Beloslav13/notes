@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-11-05 15:57+0300\n"
-"PO-Revision-Date: 2020-11-05 15:58+0300\n"
+"POT-Creation-Date: 2020-11-05 17:01+0300\n"
+"PO-Revision-Date: 2020-11-05 17:03+0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: ru\n"
@@ -20,7 +20,7 @@ msgstr ""
 "%100>=11 && n%100<=14)? 2 : 3);\n"
 "X-Generator: Poedit 2.4.1\n"
 
-#: apps.py:7 models/note.py:79
+#: apps.py:7 models/note.py:87
 msgid "Notes"
 msgstr "Заметки"
 
@@ -60,34 +60,90 @@ msgstr "В работе"
 msgid "Done"
 msgstr "Выполнено"
 
-#: models/note.py:31 models/note.py:110
+#: models/note.py:31 models/note.py:118
 msgid "State"
 msgstr "Состояние"
 
-#: models/note.py:78
+#: models/note.py:38
+msgid "Name"
+msgstr "Название"
+
+#: models/note.py:45
+msgid "Owner"
+msgstr "Владелец"
+
+#: models/note.py:52
+msgid "Priority"
+msgstr "Приоритет"
+
+#: models/note.py:59
+msgid "Readers"
+msgstr "Разрешенные читатели"
+
+#: models/note.py:64
+msgid "Is done"
+msgstr "Выполнено"
+
+#: models/note.py:69
+msgid "Created at"
+msgstr "Дата создания"
+
+#: models/note.py:74
+msgid "Updated at"
+msgstr "Дата обновления"
+
+#: models/note.py:82
+msgid "Solved at"
+msgstr "Дата закрытия"
+
+#: models/note.py:86
 msgid "Note"
 msgstr "Заметка"
 
-#: models/note.py:113
+#: models/note.py:121
 msgid "Draft to published"
 msgstr "Опубликовано"
 
-#: models/note.py:121
+#: models/note.py:129
 msgid "Published to draft"
 msgstr "Черновик"
 
-#: models/note.py:129
+#: models/note.py:137
 msgid "Published to in work"
 msgstr "В работе"
 
-#: models/note.py:137
+#: models/note.py:145
 msgid "In work to Published"
 msgstr "Опубликовано"
 
-#: models/note.py:145
+#: models/note.py:153
 msgid "In work to done"
 msgstr "Выполнено"
 
-#: models/note.py:155
+#: models/note.py:163
 msgid "Done to in work"
 msgstr "В работе"
+
+#: models/person.py:14
+msgid "User"
+msgstr "Пользователь"
+
+#: models/person.py:22
+msgid "Phone"
+msgstr "Номер телефона"
+
+#: models/person.py:29
+msgid "Birthday"
+msgstr "Дата рождения"
+
+#: models/person.py:35
+msgid "Person"
+msgstr "Персона"
+
+#: models/person.py:36
+msgid "Persons"
+msgstr "Персоны"
+
+#: rest/serializers/person.py:70
+msgid "This field has not been filled in"
+msgstr "Это поле не было заполнено."

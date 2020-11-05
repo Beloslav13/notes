@@ -1,5 +1,6 @@
 from django.contrib.auth.models import User
 from django.db import models
+from django.utils.translation import ugettext_lazy as _
 
 
 class Person(models.Model):
@@ -9,26 +10,36 @@ class Person(models.Model):
         User,
         on_delete=models.CASCADE,
         related_name='person',
-        null=True
+        null=True,
+        verbose_name=_('User')
     )
 
     phone = models.CharField(
         max_length=255,
         null=True,
         blank=True,
-        default=None
+        default=None,
+        verbose_name=_('Phone')
     )
 
     birthday = models.DateField(
         null=True,
         blank=True,
-        default=None
+        default=None,
+        verbose_name=_('Birthday')
     )
 
     # todo: last_activity
 
+    class Meta:
+        verbose_name = _('Person')
+        verbose_name_plural = _('Persons')
+
     def __str__(self):
         return f'{self.user.username} id:{self.id}'
+
+    def phone_name(self):
+        return self.phone
 
     @property
     def username(self):

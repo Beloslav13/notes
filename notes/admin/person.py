@@ -2,8 +2,14 @@ from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
 from django.contrib.auth.models import User
 
-
 from notes.models import Person
+
+
+class PersonCustomAdmin(admin.ModelAdmin):
+    fields = ('user', 'phone', 'birthday')
+    list_display = ('user', 'phone', 'birthday')
+    list_filter = ('birthday',)
+    ordering = ('id',)
 
 
 class PersonInlineAdmin(admin.StackedInline):
@@ -35,3 +41,4 @@ class PersonAdmin(UserAdmin):
 
 admin.site.unregister(User)
 admin.site.register(User, PersonAdmin)
+admin.site.register(Person, PersonCustomAdmin)

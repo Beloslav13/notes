@@ -34,44 +34,52 @@ class Note(models.Model):
     name = models.CharField(
         max_length=255,
         blank=False,
-        null=False
+        null=False,
+        verbose_name=_('Name')
     )
 
     owner = models.ForeignKey(
         User,
         on_delete=models.CASCADE,
-        related_name='my_notes'
+        related_name='my_notes',
+        verbose_name=_('Owner')
     )
 
     priority = models.PositiveSmallIntegerField(
         choices=PRIORITY_CHOICE,
         blank=False,
-        null=False
+        null=False,
+        verbose_name=_('Priority')
     )
 
     readers = models.ManyToManyField(
         User,
         related_name='read_notes',
-        blank=True
+        blank=True,
+        verbose_name=_('Readers')
     )
 
     is_done = models.BooleanField(
-        default=False
+        default=False,
+        verbose_name=_('Is done')
     )
 
     created_at = models.DateTimeField(
-        auto_now_add=True
+        auto_now_add=True,
+        verbose_name=_('Created at')
     )
 
     updated_at = models.DateTimeField(
-        auto_now=True
+        auto_now=True,
+        verbose_name=_('Updated at')
     )
 
     solved_at = models.DateTimeField(
         auto_now=False,
         blank=True,
         null=True,
-        db_index=True
+        db_index=True,
+        verbose_name=_('Solved at')
     )
 
     class Meta:

@@ -1,5 +1,7 @@
 from django.contrib.auth.models import User
 from django.db.models import Count
+from django.utils.translation import ugettext_lazy as _
+
 from rest_framework import serializers
 
 from notes.models.note import Note
@@ -65,7 +67,7 @@ class UserSerializer(serializers.ModelSerializer):
     def validate(self, data):
         attr_errors = {}
         if not data['person']['birthday']:
-            attr_errors['birthday'] = "Это поле не было заполнено."
+            attr_errors['birthday'] = _('This field has not been filled in')
             raise serializers.ValidationError(attr_errors)
         return data
 
